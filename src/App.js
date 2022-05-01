@@ -1,8 +1,36 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import NotFound from './pages/NotFound'
+import About from './pages/About'
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
+import Alert from './components/layout/Alert'
+import User from './pages/User'
+import { GithubProvider } from './contexts/github/GithubContext'
+import { AlertProvider } from './contexts/alert/AlertContext'
+
 function App() {
   return (
-    <div className='bg-purple-500'>
-      <h1 className='text-3xl'>Hello world!</h1>
-    </div>
+    <GithubProvider>
+      <AlertProvider>
+        <Router>
+          <div className='flex flex-col justify-between h-screen'>
+            <Navbar />
+            <main className='container mx-auto px-auto pb-3'>
+              <Alert />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/user/:login' element={<User />} />s
+                <Route path='/notfound' element={<NotFound />} />
+                <Route path='/*' element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </AlertProvider>
+    </GithubProvider>
   )
 }
 
