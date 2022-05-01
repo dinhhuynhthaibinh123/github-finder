@@ -5,7 +5,6 @@ import RepoList from '../components/repos/RepoList'
 import { getUserAndRepos } from '../contexts/github/GithubActions'
 import {
   FaCodepen,
-  FaDove,
   FaStore,
   FaUserFriends,
   FaUsers,
